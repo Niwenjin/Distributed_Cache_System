@@ -90,6 +90,7 @@ set(GRPC_LIBS
         grpc_plugin_support
         grpc_unsecure
         grpcpp_channelz
+        jsoncpp
         protobuf
         re2
         ssl
@@ -100,7 +101,7 @@ set(GRPC_LIBS
 # find_library(LIB_ABSL libabsl_*.* /usr/lib)
 # find_package(grpc CONFIG REQUIRED)
 
-include_directories(include protos)
+include_directories(include protos http)
 
 add_executable(server main.cpp src/CacheClient.cpp src/CacheServiceImpl.cpp protos/cache_service.pb.cc protos/cache_service.grpc.pb.cc)
 
