@@ -11,9 +11,9 @@
 using grpc::ServerContext;
 using grpc::Status;
 using std::string;
+using std::unique_ptr;
 using std::unordered_map;
 using std::vector;
-using std::unique_ptr;
 
 class CacheServiceImpl final : public CacheService::Service {
   public:
@@ -29,13 +29,14 @@ class CacheServiceImpl final : public CacheService::Service {
     Status Delete(ServerContext *context, const DelRequest *request,
                   DelReply *reply) override;
 
+    string getCache(const string key);
+    void setCache(const string key, const string value);
+    int delCache(const string key);
+
   private:
     size_t m_no;
     vector<unique_ptr<CacheClient>> client;
     unordered_map<string, string> map;
-    string getCache(const string key);
-    void setCache(const string key, const string value);
-    int delCache(const string key);
     size_t hash(string);
 };
 #endif
