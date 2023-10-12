@@ -1,6 +1,7 @@
+#ifndef CACHECLIENT_H
+#define CACHECLIENT_H
 #include "cache_service.grpc.pb.h"
 #include <grpcpp/grpcpp.h>
-#include <iostream>
 #include <string>
 
 using grpc::Channel;
@@ -17,8 +18,9 @@ class CacheClient {
 
     void Set(const string &key, const string &value);
 
-    void Delete(const string &key);
+    int Delete(const string &key);
 
   private:
-    std::unique_ptr<CacheService::Stub> stub_;
+    std::unique_ptr<CacheService::Stub> stub;
 };
+#endif

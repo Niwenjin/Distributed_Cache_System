@@ -1,7 +1,7 @@
 #include "CacheClient.h"
 
 CacheClient::CacheClient(std::shared_ptr<Channel> channel)
-    : stub_(CacheService::NewStub(channel)) {}
+    : stub(CacheService::NewStub(channel)) {}
 
 CacheClient::~CacheClient() {}
 
@@ -12,14 +12,9 @@ string CacheClient::Get(const string &key) {
     GetReply reply;
     ClientContext context;
 
-    Status status = stub_->Get(&context, request, &reply);
+    Status status = stub->Get(&context, request, &reply);
 
-    if (status.ok()) {
-        return reply.value();
-    } else {
-        std::cerr << "Error: " << status.error_message() << std::endl;
-        return "";
-    }
+    return reply.value();
 }
 
 void CacheClient::Set(const string &key, const string &value) {
@@ -30,23 +25,17 @@ void CacheClient::Set(const string &key, const string &value) {
     SetReply reply;
     ClientContext context;
 
-    Status status = stub_->Set(&context, request, &reply);
-
-    if (!status.ok()) {
-        std::cerr << "Error: " << status.error_message() << std::endl;
-    }
+    Status status = stub->Set(&context, request, &reply);
 }
 
-void CacheClient::Delete(const string &key) {
+int CacheClient::Delete(const string &key) {
     DelRequest request;
     request.set_key(key);
 
     DelReply reply;
     ClientContext context;
 
-    Status status = stub_->Delete(&context, request, &reply);
+    Status status = stub->Delete(&context, request, &reply);
 
-    if (!status.ok()) {
-        std::cerr << "Error: " << status.error_message() << std::endl;
-    }
+    return reply.num();
 }

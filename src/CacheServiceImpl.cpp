@@ -1,6 +1,19 @@
 #include "CacheServiceImpl.h"
+#include "CacheClient.h"
+#include <cstddef>
+#include <memory>
 
-CacheServiceImpl::CacheServiceImpl(size_t no) : server_NO(no) {}
+using grpc::CreateChannel;
+using grpc::InsecureChannelCredentials;
+using std::make_unique;
+
+CacheServiceImpl::CacheServiceImpl(size_t no) : m_no(no) {
+    string server_address[3] = {"0.0.0.0:8080", "0.0.0.0:8081", "0.0.0.0:8082"};
+    for (string addr : server_address) {
+        client.push_back(make_unique<CacheClient>(
+            CreateChannel(addr, InsecureChannelCredentials())));
+    }
+}
 
 CacheServiceImpl::~CacheServiceImpl() {}
 
@@ -23,31 +36,28 @@ Status CacheServiceImpl::Delete(ServerContext *context,
     return Status::OK;
 }
 
-bool CacheServiceImpl::inthis(string key) {
-    size_t no = hash(key);
-    return no == server_NO;
-}
-
 string CacheServiceImpl::getCache(const string key) {
-    if (inthis(key))
+    size_t no = hash(key);
+    if (no == m_no)
         return map[key];
     else
-        // 访问其他节点
-        return
+        return client[no]->Get(key);
 }
 
 void CacheServiceImpl::setCache(const string key, const string value) {
-    if (inthis(key))
+    size_t no = hash(key);
+    if (no == m_no)
         map[key] = value;
     else
-    // 访问其他节点
+        client[no]->Set(key, value);
 }
 
 int CacheServiceImpl::delCache(const string key) {
-    if (inthis(key))
+    size_t no = hash(key);
+    if (no == m_no)
         return map.erase(key);
     else
-    // 访问其他节点
+        return client[no]->Delete(key);
 }
 
 size_t CacheServiceImpl::hash(string str) {
