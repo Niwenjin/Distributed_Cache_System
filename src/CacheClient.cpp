@@ -7,13 +7,13 @@ CacheClient::~CacheClient() {}
 
 string CacheClient::Get(const string &key) {
     GetRequest request;
+
     request.set_key(key);
 
     GetReply reply;
     ClientContext context;
 
-    Status status = stub->Get(&context, request, &reply);
-
+    stub->Get(&context, request, &reply);
     return reply.value();
 }
 
@@ -25,7 +25,7 @@ void CacheClient::Set(const string &key, const string &value) {
     SetReply reply;
     ClientContext context;
 
-    Status status = stub->Set(&context, request, &reply);
+    stub->Set(&context, request, &reply);
 }
 
 int CacheClient::Delete(const string &key) {
@@ -35,7 +35,7 @@ int CacheClient::Delete(const string &key) {
     DelReply reply;
     ClientContext context;
 
-    Status status = stub->Delete(&context, request, &reply);
+    stub->Delete(&context, request, &reply);
 
     return reply.num();
 }

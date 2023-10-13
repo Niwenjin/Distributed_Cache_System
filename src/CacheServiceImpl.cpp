@@ -19,7 +19,8 @@ CacheServiceImpl::~CacheServiceImpl() {}
 
 Status CacheServiceImpl::Get(ServerContext *context, const GetRequest *request,
                              GetReply *reply) {
-    reply->set_value(getCache(request->key()));
+    string value = map[request->key()];
+    reply->set_value(value);
     return Status::OK;
 }
 
@@ -31,8 +32,7 @@ Status CacheServiceImpl::Set(ServerContext *context, const SetRequest *request,
 
 Status CacheServiceImpl::Delete(ServerContext *context,
                                 const DelRequest *request, DelReply *reply) {
-    int n = delCache(request->key());
-    reply->set_num(n);
+    reply->set_num(map.erase(request->key()));
     return Status::OK;
 }
 

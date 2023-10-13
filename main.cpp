@@ -34,16 +34,16 @@ int main(int argc, char *argv[]) {
     builder.RegisterService(service);
 
     unique_ptr<Server> server(builder.BuildAndStart());
-    std::cout << "Server listening on " << server_address[no] << std::endl;
 
     // 启动HTTP服务
     const int port[3] = {9527, 9528, 9529};
     httplib::Server httpsvr;
-    httpsvr.Get("/", httpget);
+    httpsvr.Get("/:key", httpget);
     httpsvr.Post("/", httppost);
-    httpsvr.Delete("/", httpdel);
+    httpsvr.Delete("/:key", httpdel);
 
-    httpsvr.listen("127.0.0.1", port[no]);
+    if (httpsvr.listen("127.0.0.1", port[no]))
+        std::cout << "Server listening on 127.0.0.1:" << port[no] << std::endl;
 
     server->Wait();
 
@@ -51,22 +51,30 @@ int main(int argc, char *argv[]) {
 }
 
 void httpget(const Request &req, Response &res) {
-    string key = req.matches[1];
-    string value = service->getCache(key);
-    if (value.empty()) {
-        res.status = 404;
-        res.body = nullptr;
-    } else {
-        res.status = 200;
-        Json::Value kv;
-        kv[key] = value;
-        Json::StreamWriterBuilder writer;
-        string json_str = Json::writeString(writer, kv);
-        res.set_content(json_str, "application/json");
+    try {
+        string key = req.path_params.at("key");
+        std::cout << "recive httpget:" << key << std::endl;
+        string value = service->getCache(key);
+        if (value.empty()) {
+            res.status = 404;
+            res.body = "";
+        } else {
+            res.status = 200;
+            Json::Value kv;
+            kv[key] = value;
+            Json::StreamWriterBuilder writer;
+            string json_str = Json::writeString(writer, kv);
+            res.set_content(json_str, "application/json");
+        }
+    } catch (const std::exception &e) {
+        std::cerr << "Error in httpget: " << e.what() << std::endl;
+        res.status = 500;
+        res.set_content("Internal Server Error", "text/plain");
     }
 }
 
 void httppost(const Request &req, Response &res) {
+    std::cout << "recive httppost:" << req.body << std::endl;
     istringstream json_str(req.body);
     Json::CharReaderBuilder reader;
     Json::Value kv;
@@ -81,7 +89,8 @@ void httppost(const Request &req, Response &res) {
 }
 
 void httpdel(const Request &req, Response &res) {
-    string key = req.matches[1];
+    string key = req.path_params.at("key");
+    std::cout << "recive httpdel:" << key << std::endl;
     res.status = 200;
     res.body = to_string(service->delCache(key));
 }
