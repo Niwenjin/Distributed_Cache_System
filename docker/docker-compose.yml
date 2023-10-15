@@ -1,0 +1,36 @@
+version: '3'
+services:
+  server1:
+    image: cache-server:latest
+    container_name: server1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9527:8080"
+      - "8000:8000"
+    command: ["./server", "0"]
+
+  server2:
+    image: cache-server:latest
+    container_name: server2
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9528:8081"
+      - "8001:8001"
+    command: ["./server", "1"]
+
+  server3:
+    image: cache-server:latest
+    container_name: server3
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9529:8082"
+      - "8002:8002"
+    command: ["./server", "2"]
+
+
