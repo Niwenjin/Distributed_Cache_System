@@ -38,69 +38,69 @@ CacheService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chann
   , rpcmethod_Delete_(CacheService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status CacheService::Stub::Get(::grpc::ClientContext* context, const ::GetRequest& request, ::GetReply* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::GetRequest, ::GetReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Get_, context, request, response);
+::grpc::Status CacheService::Stub::Get(::grpc::ClientContext* context, const ::Request& request, ::Reply* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Request, ::Reply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Get_, context, request, response);
 }
 
-void CacheService::Stub::async::Get(::grpc::ClientContext* context, const ::GetRequest* request, ::GetReply* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::GetRequest, ::GetReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_, context, request, response, std::move(f));
+void CacheService::Stub::async::Get(::grpc::ClientContext* context, const ::Request* request, ::Reply* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Request, ::Reply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_, context, request, response, std::move(f));
 }
 
-void CacheService::Stub::async::Get(::grpc::ClientContext* context, const ::GetRequest* request, ::GetReply* response, ::grpc::ClientUnaryReactor* reactor) {
+void CacheService::Stub::async::Get(::grpc::ClientContext* context, const ::Request* request, ::Reply* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::GetReply>* CacheService::Stub::PrepareAsyncGetRaw(::grpc::ClientContext* context, const ::GetRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::GetReply, ::GetRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Get_, context, request);
+::grpc::ClientAsyncResponseReader< ::Reply>* CacheService::Stub::PrepareAsyncGetRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Reply, ::Request, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Get_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::GetReply>* CacheService::Stub::AsyncGetRaw(::grpc::ClientContext* context, const ::GetRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::Reply>* CacheService::Stub::AsyncGetRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncGetRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status CacheService::Stub::Set(::grpc::ClientContext* context, const ::SetRequest& request, ::SetReply* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::SetRequest, ::SetReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Set_, context, request, response);
+::grpc::Status CacheService::Stub::Set(::grpc::ClientContext* context, const ::Request& request, ::Reply* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Request, ::Reply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Set_, context, request, response);
 }
 
-void CacheService::Stub::async::Set(::grpc::ClientContext* context, const ::SetRequest* request, ::SetReply* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::SetRequest, ::SetReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Set_, context, request, response, std::move(f));
+void CacheService::Stub::async::Set(::grpc::ClientContext* context, const ::Request* request, ::Reply* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Request, ::Reply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Set_, context, request, response, std::move(f));
 }
 
-void CacheService::Stub::async::Set(::grpc::ClientContext* context, const ::SetRequest* request, ::SetReply* response, ::grpc::ClientUnaryReactor* reactor) {
+void CacheService::Stub::async::Set(::grpc::ClientContext* context, const ::Request* request, ::Reply* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Set_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::SetReply>* CacheService::Stub::PrepareAsyncSetRaw(::grpc::ClientContext* context, const ::SetRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::SetReply, ::SetRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Set_, context, request);
+::grpc::ClientAsyncResponseReader< ::Reply>* CacheService::Stub::PrepareAsyncSetRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Reply, ::Request, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Set_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::SetReply>* CacheService::Stub::AsyncSetRaw(::grpc::ClientContext* context, const ::SetRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::Reply>* CacheService::Stub::AsyncSetRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncSetRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status CacheService::Stub::Delete(::grpc::ClientContext* context, const ::DelRequest& request, ::DelReply* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::DelRequest, ::DelReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Delete_, context, request, response);
+::grpc::Status CacheService::Stub::Delete(::grpc::ClientContext* context, const ::Request& request, ::Reply* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Request, ::Reply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Delete_, context, request, response);
 }
 
-void CacheService::Stub::async::Delete(::grpc::ClientContext* context, const ::DelRequest* request, ::DelReply* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::DelRequest, ::DelReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Delete_, context, request, response, std::move(f));
+void CacheService::Stub::async::Delete(::grpc::ClientContext* context, const ::Request* request, ::Reply* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Request, ::Reply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Delete_, context, request, response, std::move(f));
 }
 
-void CacheService::Stub::async::Delete(::grpc::ClientContext* context, const ::DelRequest* request, ::DelReply* response, ::grpc::ClientUnaryReactor* reactor) {
+void CacheService::Stub::async::Delete(::grpc::ClientContext* context, const ::Request* request, ::Reply* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Delete_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::DelReply>* CacheService::Stub::PrepareAsyncDeleteRaw(::grpc::ClientContext* context, const ::DelRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::DelReply, ::DelRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Delete_, context, request);
+::grpc::ClientAsyncResponseReader< ::Reply>* CacheService::Stub::PrepareAsyncDeleteRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Reply, ::Request, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Delete_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::DelReply>* CacheService::Stub::AsyncDeleteRaw(::grpc::ClientContext* context, const ::DelRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::Reply>* CacheService::Stub::AsyncDeleteRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncDeleteRaw(context, request, cq);
   result->StartCall();
@@ -111,31 +111,31 @@ CacheService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       CacheService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< CacheService::Service, ::GetRequest, ::GetReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< CacheService::Service, ::Request, ::Reply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](CacheService::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::GetRequest* req,
-             ::GetReply* resp) {
+             const ::Request* req,
+             ::Reply* resp) {
                return service->Get(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       CacheService_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< CacheService::Service, ::SetRequest, ::SetReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< CacheService::Service, ::Request, ::Reply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](CacheService::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::SetRequest* req,
-             ::SetReply* resp) {
+             const ::Request* req,
+             ::Reply* resp) {
                return service->Set(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       CacheService_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< CacheService::Service, ::DelRequest, ::DelReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< CacheService::Service, ::Request, ::Reply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](CacheService::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::DelRequest* req,
-             ::DelReply* resp) {
+             const ::Request* req,
+             ::Reply* resp) {
                return service->Delete(ctx, req, resp);
              }, this)));
 }
@@ -143,21 +143,21 @@ CacheService::Service::Service() {
 CacheService::Service::~Service() {
 }
 
-::grpc::Status CacheService::Service::Get(::grpc::ServerContext* context, const ::GetRequest* request, ::GetReply* response) {
+::grpc::Status CacheService::Service::Get(::grpc::ServerContext* context, const ::Request* request, ::Reply* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status CacheService::Service::Set(::grpc::ServerContext* context, const ::SetRequest* request, ::SetReply* response) {
+::grpc::Status CacheService::Service::Set(::grpc::ServerContext* context, const ::Request* request, ::Reply* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status CacheService::Service::Delete(::grpc::ServerContext* context, const ::DelRequest* request, ::DelReply* response) {
+::grpc::Status CacheService::Service::Delete(::grpc::ServerContext* context, const ::Request* request, ::Reply* response) {
   (void) context;
   (void) request;
   (void) response;

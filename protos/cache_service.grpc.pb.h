@@ -33,81 +33,81 @@ class CacheService final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status Get(::grpc::ClientContext* context, const ::GetRequest& request, ::GetReply* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GetReply>> AsyncGet(::grpc::ClientContext* context, const ::GetRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GetReply>>(AsyncGetRaw(context, request, cq));
+    virtual ::grpc::Status Get(::grpc::ClientContext* context, const ::Request& request, ::Reply* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Reply>> AsyncGet(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Reply>>(AsyncGetRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GetReply>> PrepareAsyncGet(::grpc::ClientContext* context, const ::GetRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GetReply>>(PrepareAsyncGetRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Reply>> PrepareAsyncGet(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Reply>>(PrepareAsyncGetRaw(context, request, cq));
     }
-    virtual ::grpc::Status Set(::grpc::ClientContext* context, const ::SetRequest& request, ::SetReply* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::SetReply>> AsyncSet(::grpc::ClientContext* context, const ::SetRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::SetReply>>(AsyncSetRaw(context, request, cq));
+    virtual ::grpc::Status Set(::grpc::ClientContext* context, const ::Request& request, ::Reply* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Reply>> AsyncSet(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Reply>>(AsyncSetRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::SetReply>> PrepareAsyncSet(::grpc::ClientContext* context, const ::SetRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::SetReply>>(PrepareAsyncSetRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Reply>> PrepareAsyncSet(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Reply>>(PrepareAsyncSetRaw(context, request, cq));
     }
-    virtual ::grpc::Status Delete(::grpc::ClientContext* context, const ::DelRequest& request, ::DelReply* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::DelReply>> AsyncDelete(::grpc::ClientContext* context, const ::DelRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::DelReply>>(AsyncDeleteRaw(context, request, cq));
+    virtual ::grpc::Status Delete(::grpc::ClientContext* context, const ::Request& request, ::Reply* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Reply>> AsyncDelete(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Reply>>(AsyncDeleteRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::DelReply>> PrepareAsyncDelete(::grpc::ClientContext* context, const ::DelRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::DelReply>>(PrepareAsyncDeleteRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Reply>> PrepareAsyncDelete(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Reply>>(PrepareAsyncDeleteRaw(context, request, cq));
     }
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void Get(::grpc::ClientContext* context, const ::GetRequest* request, ::GetReply* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Get(::grpc::ClientContext* context, const ::GetRequest* request, ::GetReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Set(::grpc::ClientContext* context, const ::SetRequest* request, ::SetReply* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Set(::grpc::ClientContext* context, const ::SetRequest* request, ::SetReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Delete(::grpc::ClientContext* context, const ::DelRequest* request, ::DelReply* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Delete(::grpc::ClientContext* context, const ::DelRequest* request, ::DelReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Get(::grpc::ClientContext* context, const ::Request* request, ::Reply* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Get(::grpc::ClientContext* context, const ::Request* request, ::Reply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Set(::grpc::ClientContext* context, const ::Request* request, ::Reply* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Set(::grpc::ClientContext* context, const ::Request* request, ::Reply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Delete(::grpc::ClientContext* context, const ::Request* request, ::Reply* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Delete(::grpc::ClientContext* context, const ::Request* request, ::Reply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::GetReply>* AsyncGetRaw(::grpc::ClientContext* context, const ::GetRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::GetReply>* PrepareAsyncGetRaw(::grpc::ClientContext* context, const ::GetRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::SetReply>* AsyncSetRaw(::grpc::ClientContext* context, const ::SetRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::SetReply>* PrepareAsyncSetRaw(::grpc::ClientContext* context, const ::SetRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::DelReply>* AsyncDeleteRaw(::grpc::ClientContext* context, const ::DelRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::DelReply>* PrepareAsyncDeleteRaw(::grpc::ClientContext* context, const ::DelRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Reply>* AsyncGetRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Reply>* PrepareAsyncGetRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Reply>* AsyncSetRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Reply>* PrepareAsyncSetRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Reply>* AsyncDeleteRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Reply>* PrepareAsyncDeleteRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status Get(::grpc::ClientContext* context, const ::GetRequest& request, ::GetReply* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GetReply>> AsyncGet(::grpc::ClientContext* context, const ::GetRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GetReply>>(AsyncGetRaw(context, request, cq));
+    ::grpc::Status Get(::grpc::ClientContext* context, const ::Request& request, ::Reply* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Reply>> AsyncGet(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Reply>>(AsyncGetRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GetReply>> PrepareAsyncGet(::grpc::ClientContext* context, const ::GetRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GetReply>>(PrepareAsyncGetRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Reply>> PrepareAsyncGet(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Reply>>(PrepareAsyncGetRaw(context, request, cq));
     }
-    ::grpc::Status Set(::grpc::ClientContext* context, const ::SetRequest& request, ::SetReply* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::SetReply>> AsyncSet(::grpc::ClientContext* context, const ::SetRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::SetReply>>(AsyncSetRaw(context, request, cq));
+    ::grpc::Status Set(::grpc::ClientContext* context, const ::Request& request, ::Reply* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Reply>> AsyncSet(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Reply>>(AsyncSetRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::SetReply>> PrepareAsyncSet(::grpc::ClientContext* context, const ::SetRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::SetReply>>(PrepareAsyncSetRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Reply>> PrepareAsyncSet(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Reply>>(PrepareAsyncSetRaw(context, request, cq));
     }
-    ::grpc::Status Delete(::grpc::ClientContext* context, const ::DelRequest& request, ::DelReply* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::DelReply>> AsyncDelete(::grpc::ClientContext* context, const ::DelRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::DelReply>>(AsyncDeleteRaw(context, request, cq));
+    ::grpc::Status Delete(::grpc::ClientContext* context, const ::Request& request, ::Reply* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Reply>> AsyncDelete(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Reply>>(AsyncDeleteRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::DelReply>> PrepareAsyncDelete(::grpc::ClientContext* context, const ::DelRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::DelReply>>(PrepareAsyncDeleteRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Reply>> PrepareAsyncDelete(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Reply>>(PrepareAsyncDeleteRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void Get(::grpc::ClientContext* context, const ::GetRequest* request, ::GetReply* response, std::function<void(::grpc::Status)>) override;
-      void Get(::grpc::ClientContext* context, const ::GetRequest* request, ::GetReply* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Set(::grpc::ClientContext* context, const ::SetRequest* request, ::SetReply* response, std::function<void(::grpc::Status)>) override;
-      void Set(::grpc::ClientContext* context, const ::SetRequest* request, ::SetReply* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Delete(::grpc::ClientContext* context, const ::DelRequest* request, ::DelReply* response, std::function<void(::grpc::Status)>) override;
-      void Delete(::grpc::ClientContext* context, const ::DelRequest* request, ::DelReply* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Get(::grpc::ClientContext* context, const ::Request* request, ::Reply* response, std::function<void(::grpc::Status)>) override;
+      void Get(::grpc::ClientContext* context, const ::Request* request, ::Reply* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Set(::grpc::ClientContext* context, const ::Request* request, ::Reply* response, std::function<void(::grpc::Status)>) override;
+      void Set(::grpc::ClientContext* context, const ::Request* request, ::Reply* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Delete(::grpc::ClientContext* context, const ::Request* request, ::Reply* response, std::function<void(::grpc::Status)>) override;
+      void Delete(::grpc::ClientContext* context, const ::Request* request, ::Reply* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -119,12 +119,12 @@ class CacheService final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::GetReply>* AsyncGetRaw(::grpc::ClientContext* context, const ::GetRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::GetReply>* PrepareAsyncGetRaw(::grpc::ClientContext* context, const ::GetRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::SetReply>* AsyncSetRaw(::grpc::ClientContext* context, const ::SetRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::SetReply>* PrepareAsyncSetRaw(::grpc::ClientContext* context, const ::SetRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::DelReply>* AsyncDeleteRaw(::grpc::ClientContext* context, const ::DelRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::DelReply>* PrepareAsyncDeleteRaw(::grpc::ClientContext* context, const ::DelRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Reply>* AsyncGetRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Reply>* PrepareAsyncGetRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Reply>* AsyncSetRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Reply>* PrepareAsyncSetRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Reply>* AsyncDeleteRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Reply>* PrepareAsyncDeleteRaw(::grpc::ClientContext* context, const ::Request& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Get_;
     const ::grpc::internal::RpcMethod rpcmethod_Set_;
     const ::grpc::internal::RpcMethod rpcmethod_Delete_;
@@ -135,9 +135,9 @@ class CacheService final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status Get(::grpc::ServerContext* context, const ::GetRequest* request, ::GetReply* response);
-    virtual ::grpc::Status Set(::grpc::ServerContext* context, const ::SetRequest* request, ::SetReply* response);
-    virtual ::grpc::Status Delete(::grpc::ServerContext* context, const ::DelRequest* request, ::DelReply* response);
+    virtual ::grpc::Status Get(::grpc::ServerContext* context, const ::Request* request, ::Reply* response);
+    virtual ::grpc::Status Set(::grpc::ServerContext* context, const ::Request* request, ::Reply* response);
+    virtual ::grpc::Status Delete(::grpc::ServerContext* context, const ::Request* request, ::Reply* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_Get : public BaseClass {
@@ -151,11 +151,11 @@ class CacheService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::GetRequest* /*request*/, ::GetReply* /*response*/) override {
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::Request* /*request*/, ::Reply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGet(::grpc::ServerContext* context, ::GetRequest* request, ::grpc::ServerAsyncResponseWriter< ::GetReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestGet(::grpc::ServerContext* context, ::Request* request, ::grpc::ServerAsyncResponseWriter< ::Reply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -171,11 +171,11 @@ class CacheService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::SetRequest* /*request*/, ::SetReply* /*response*/) override {
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::Request* /*request*/, ::Reply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestSet(::grpc::ServerContext* context, ::SetRequest* request, ::grpc::ServerAsyncResponseWriter< ::SetReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestSet(::grpc::ServerContext* context, ::Request* request, ::grpc::ServerAsyncResponseWriter< ::Reply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -191,11 +191,11 @@ class CacheService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::DelRequest* /*request*/, ::DelReply* /*response*/) override {
+    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::Request* /*request*/, ::Reply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestDelete(::grpc::ServerContext* context, ::DelRequest* request, ::grpc::ServerAsyncResponseWriter< ::DelReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestDelete(::grpc::ServerContext* context, ::Request* request, ::grpc::ServerAsyncResponseWriter< ::Reply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -207,25 +207,25 @@ class CacheService final {
    public:
     WithCallbackMethod_Get() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::GetRequest, ::GetReply>(
+          new ::grpc::internal::CallbackUnaryHandler< ::Request, ::Reply>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::GetRequest* request, ::GetReply* response) { return this->Get(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::Request* request, ::Reply* response) { return this->Get(context, request, response); }));}
     void SetMessageAllocatorFor_Get(
-        ::grpc::MessageAllocator< ::GetRequest, ::GetReply>* allocator) {
+        ::grpc::MessageAllocator< ::Request, ::Reply>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::GetRequest, ::GetReply>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Request, ::Reply>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Get() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::GetRequest* /*request*/, ::GetReply* /*response*/) override {
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::Request* /*request*/, ::Reply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Get(
-      ::grpc::CallbackServerContext* /*context*/, const ::GetRequest* /*request*/, ::GetReply* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::Request* /*request*/, ::Reply* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_Set : public BaseClass {
@@ -234,25 +234,25 @@ class CacheService final {
    public:
     WithCallbackMethod_Set() {
       ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::SetRequest, ::SetReply>(
+          new ::grpc::internal::CallbackUnaryHandler< ::Request, ::Reply>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::SetRequest* request, ::SetReply* response) { return this->Set(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::Request* request, ::Reply* response) { return this->Set(context, request, response); }));}
     void SetMessageAllocatorFor_Set(
-        ::grpc::MessageAllocator< ::SetRequest, ::SetReply>* allocator) {
+        ::grpc::MessageAllocator< ::Request, ::Reply>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::SetRequest, ::SetReply>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Request, ::Reply>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Set() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::SetRequest* /*request*/, ::SetReply* /*response*/) override {
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::Request* /*request*/, ::Reply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Set(
-      ::grpc::CallbackServerContext* /*context*/, const ::SetRequest* /*request*/, ::SetReply* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::Request* /*request*/, ::Reply* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_Delete : public BaseClass {
@@ -261,25 +261,25 @@ class CacheService final {
    public:
     WithCallbackMethod_Delete() {
       ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::DelRequest, ::DelReply>(
+          new ::grpc::internal::CallbackUnaryHandler< ::Request, ::Reply>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::DelRequest* request, ::DelReply* response) { return this->Delete(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::Request* request, ::Reply* response) { return this->Delete(context, request, response); }));}
     void SetMessageAllocatorFor_Delete(
-        ::grpc::MessageAllocator< ::DelRequest, ::DelReply>* allocator) {
+        ::grpc::MessageAllocator< ::Request, ::Reply>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::DelRequest, ::DelReply>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Request, ::Reply>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Delete() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::DelRequest* /*request*/, ::DelReply* /*response*/) override {
+    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::Request* /*request*/, ::Reply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Delete(
-      ::grpc::CallbackServerContext* /*context*/, const ::DelRequest* /*request*/, ::DelReply* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::Request* /*request*/, ::Reply* /*response*/)  { return nullptr; }
   };
   typedef WithCallbackMethod_Get<WithCallbackMethod_Set<WithCallbackMethod_Delete<Service > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
@@ -295,7 +295,7 @@ class CacheService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::GetRequest* /*request*/, ::GetReply* /*response*/) override {
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::Request* /*request*/, ::Reply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -312,7 +312,7 @@ class CacheService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::SetRequest* /*request*/, ::SetReply* /*response*/) override {
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::Request* /*request*/, ::Reply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -329,7 +329,7 @@ class CacheService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::DelRequest* /*request*/, ::DelReply* /*response*/) override {
+    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::Request* /*request*/, ::Reply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -346,7 +346,7 @@ class CacheService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::GetRequest* /*request*/, ::GetReply* /*response*/) override {
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::Request* /*request*/, ::Reply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -366,7 +366,7 @@ class CacheService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::SetRequest* /*request*/, ::SetReply* /*response*/) override {
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::Request* /*request*/, ::Reply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -386,7 +386,7 @@ class CacheService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::DelRequest* /*request*/, ::DelReply* /*response*/) override {
+    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::Request* /*request*/, ::Reply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -409,7 +409,7 @@ class CacheService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::GetRequest* /*request*/, ::GetReply* /*response*/) override {
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::Request* /*request*/, ::Reply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -431,7 +431,7 @@ class CacheService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::SetRequest* /*request*/, ::SetReply* /*response*/) override {
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::Request* /*request*/, ::Reply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -453,7 +453,7 @@ class CacheService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::DelRequest* /*request*/, ::DelReply* /*response*/) override {
+    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::Request* /*request*/, ::Reply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -468,10 +468,10 @@ class CacheService final {
     WithStreamedUnaryMethod_Get() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::GetRequest, ::GetReply>(
+          ::Request, ::Reply>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::GetRequest, ::GetReply>* streamer) {
+                     ::Request, ::Reply>* streamer) {
                        return this->StreamedGet(context,
                          streamer);
                   }));
@@ -480,12 +480,12 @@ class CacheService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::GetRequest* /*request*/, ::GetReply* /*response*/) override {
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::Request* /*request*/, ::Reply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGet(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::GetRequest,::GetReply>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedGet(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Request,::Reply>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_Set : public BaseClass {
@@ -495,10 +495,10 @@ class CacheService final {
     WithStreamedUnaryMethod_Set() {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::SetRequest, ::SetReply>(
+          ::Request, ::Reply>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::SetRequest, ::SetReply>* streamer) {
+                     ::Request, ::Reply>* streamer) {
                        return this->StreamedSet(context,
                          streamer);
                   }));
@@ -507,12 +507,12 @@ class CacheService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::SetRequest* /*request*/, ::SetReply* /*response*/) override {
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::Request* /*request*/, ::Reply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedSet(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::SetRequest,::SetReply>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedSet(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Request,::Reply>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_Delete : public BaseClass {
@@ -522,10 +522,10 @@ class CacheService final {
     WithStreamedUnaryMethod_Delete() {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::DelRequest, ::DelReply>(
+          ::Request, ::Reply>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::DelRequest, ::DelReply>* streamer) {
+                     ::Request, ::Reply>* streamer) {
                        return this->StreamedDelete(context,
                          streamer);
                   }));
@@ -534,12 +534,12 @@ class CacheService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::DelRequest* /*request*/, ::DelReply* /*response*/) override {
+    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::Request* /*request*/, ::Reply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedDelete(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::DelRequest,::DelReply>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedDelete(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Request,::Reply>* server_unary_streamer) = 0;
   };
   typedef WithStreamedUnaryMethod_Get<WithStreamedUnaryMethod_Set<WithStreamedUnaryMethod_Delete<Service > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
