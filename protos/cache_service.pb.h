@@ -198,22 +198,22 @@ class Request final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kKeyFieldNumber = 1,
+    kReqFieldNumber = 1,
   };
-  // string key = 1;
-  void clear_key() ;
-  const std::string& key() const;
+  // string req = 1;
+  void clear_req() ;
+  const std::string& req() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_key(Arg_&& arg, Args_... args);
-  std::string* mutable_key();
-  PROTOBUF_NODISCARD std::string* release_key();
-  void set_allocated_key(std::string* ptr);
+  void set_req(Arg_&& arg, Args_... args);
+  std::string* mutable_req();
+  PROTOBUF_NODISCARD std::string* release_req();
+  void set_allocated_req(std::string* ptr);
 
   private:
-  const std::string& _internal_key() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_key(
+  const std::string& _internal_req() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_req(
       const std::string& value);
-  std::string* _internal_mutable_key();
+  std::string* _internal_mutable_req();
 
   public:
   // @@protoc_insertion_point(class_scope:Request)
@@ -226,7 +226,7 @@ class Request final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::google::protobuf::internal::ArenaStringPtr key_;
+    ::google::protobuf::internal::ArenaStringPtr req_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -362,22 +362,22 @@ class Reply final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kValueFieldNumber = 1,
+    kReplyFieldNumber = 1,
   };
-  // string value = 1;
-  void clear_value() ;
-  const std::string& value() const;
+  // string reply = 1;
+  void clear_reply() ;
+  const std::string& reply() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_value(Arg_&& arg, Args_... args);
-  std::string* mutable_value();
-  PROTOBUF_NODISCARD std::string* release_value();
-  void set_allocated_value(std::string* ptr);
+  void set_reply(Arg_&& arg, Args_... args);
+  std::string* mutable_reply();
+  PROTOBUF_NODISCARD std::string* release_reply();
+  void set_allocated_reply(std::string* ptr);
 
   private:
-  const std::string& _internal_value() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_value(
+  const std::string& _internal_reply() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_reply(
       const std::string& value);
-  std::string* _internal_mutable_value();
+  std::string* _internal_mutable_reply();
 
   public:
   // @@protoc_insertion_point(class_scope:Reply)
@@ -390,7 +390,7 @@ class Reply final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::google::protobuf::internal::ArenaStringPtr value_;
+    ::google::protobuf::internal::ArenaStringPtr reply_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -414,110 +414,110 @@ class Reply final :
 
 // Request
 
-// string key = 1;
-inline void Request::clear_key() {
-  _impl_.key_.ClearToEmpty();
+// string req = 1;
+inline void Request::clear_req() {
+  _impl_.req_.ClearToEmpty();
 }
-inline const std::string& Request::key() const {
-  // @@protoc_insertion_point(field_get:Request.key)
-  return _internal_key();
+inline const std::string& Request::req() const {
+  // @@protoc_insertion_point(field_get:Request.req)
+  return _internal_req();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void Request::set_key(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void Request::set_req(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.key_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Request.key)
+  _impl_.req_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Request.req)
 }
-inline std::string* Request::mutable_key() {
-  std::string* _s = _internal_mutable_key();
-  // @@protoc_insertion_point(field_mutable:Request.key)
+inline std::string* Request::mutable_req() {
+  std::string* _s = _internal_mutable_req();
+  // @@protoc_insertion_point(field_mutable:Request.req)
   return _s;
 }
-inline const std::string& Request::_internal_key() const {
+inline const std::string& Request::_internal_req() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.key_.Get();
+  return _impl_.req_.Get();
 }
-inline void Request::_internal_set_key(const std::string& value) {
+inline void Request::_internal_set_req(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.key_.Set(value, GetArenaForAllocation());
+  _impl_.req_.Set(value, GetArenaForAllocation());
 }
-inline std::string* Request::_internal_mutable_key() {
+inline std::string* Request::_internal_mutable_req() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  return _impl_.key_.Mutable( GetArenaForAllocation());
+  return _impl_.req_.Mutable( GetArenaForAllocation());
 }
-inline std::string* Request::release_key() {
+inline std::string* Request::release_req() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:Request.key)
-  return _impl_.key_.Release();
+  // @@protoc_insertion_point(field_release:Request.req)
+  return _impl_.req_.Release();
 }
-inline void Request::set_allocated_key(std::string* value) {
+inline void Request::set_allocated_req(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.key_.SetAllocated(value, GetArenaForAllocation());
+  _impl_.req_.SetAllocated(value, GetArenaForAllocation());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.key_.IsDefault()) {
-          _impl_.key_.Set("", GetArenaForAllocation());
+        if (_impl_.req_.IsDefault()) {
+          _impl_.req_.Set("", GetArenaForAllocation());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Request.key)
+  // @@protoc_insertion_point(field_set_allocated:Request.req)
 }
 
 // -------------------------------------------------------------------
 
 // Reply
 
-// string value = 1;
-inline void Reply::clear_value() {
-  _impl_.value_.ClearToEmpty();
+// string reply = 1;
+inline void Reply::clear_reply() {
+  _impl_.reply_.ClearToEmpty();
 }
-inline const std::string& Reply::value() const {
-  // @@protoc_insertion_point(field_get:Reply.value)
-  return _internal_value();
+inline const std::string& Reply::reply() const {
+  // @@protoc_insertion_point(field_get:Reply.reply)
+  return _internal_reply();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void Reply::set_value(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void Reply::set_reply(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.value_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Reply.value)
+  _impl_.reply_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Reply.reply)
 }
-inline std::string* Reply::mutable_value() {
-  std::string* _s = _internal_mutable_value();
-  // @@protoc_insertion_point(field_mutable:Reply.value)
+inline std::string* Reply::mutable_reply() {
+  std::string* _s = _internal_mutable_reply();
+  // @@protoc_insertion_point(field_mutable:Reply.reply)
   return _s;
 }
-inline const std::string& Reply::_internal_value() const {
+inline const std::string& Reply::_internal_reply() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.value_.Get();
+  return _impl_.reply_.Get();
 }
-inline void Reply::_internal_set_value(const std::string& value) {
+inline void Reply::_internal_set_reply(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.value_.Set(value, GetArenaForAllocation());
+  _impl_.reply_.Set(value, GetArenaForAllocation());
 }
-inline std::string* Reply::_internal_mutable_value() {
+inline std::string* Reply::_internal_mutable_reply() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  return _impl_.value_.Mutable( GetArenaForAllocation());
+  return _impl_.reply_.Mutable( GetArenaForAllocation());
 }
-inline std::string* Reply::release_value() {
+inline std::string* Reply::release_reply() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:Reply.value)
-  return _impl_.value_.Release();
+  // @@protoc_insertion_point(field_release:Reply.reply)
+  return _impl_.reply_.Release();
 }
-inline void Reply::set_allocated_value(std::string* value) {
+inline void Reply::set_allocated_reply(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.value_.SetAllocated(value, GetArenaForAllocation());
+  _impl_.reply_.SetAllocated(value, GetArenaForAllocation());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.value_.IsDefault()) {
-          _impl_.value_.Set("", GetArenaForAllocation());
+        if (_impl_.reply_.IsDefault()) {
+          _impl_.reply_.Set("", GetArenaForAllocation());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Reply.value)
+  // @@protoc_insertion_point(field_set_allocated:Reply.reply)
 }
 
 #ifdef __GNUC__

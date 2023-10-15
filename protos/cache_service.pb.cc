@@ -23,7 +23,7 @@ namespace _fl = ::google::protobuf::internal::field_layout;
         template <typename>
 PROTOBUF_CONSTEXPR Request::Request(::_pbi::ConstantInitialized)
     : _impl_{
-      /*decltype(_impl_.key_)*/ {
+      /*decltype(_impl_.req_)*/ {
           &::_pbi::fixed_address_empty_string,
           ::_pbi::ConstantInitialized{},
       },
@@ -42,7 +42,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
         template <typename>
 PROTOBUF_CONSTEXPR Reply::Reply(::_pbi::ConstantInitialized)
     : _impl_{
-      /*decltype(_impl_.value_)*/ {
+      /*decltype(_impl_.reply_)*/ {
           &::_pbi::fixed_address_empty_string,
           ::_pbi::ConstantInitialized{},
       },
@@ -73,7 +73,7 @@ const ::uint32_t TableStruct_cache_5fservice_2eproto::offsets[] PROTOBUF_SECTION
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::Request, _impl_.key_),
+    PROTOBUF_FIELD_OFFSET(::Request, _impl_.req_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::Reply, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -82,7 +82,7 @@ const ::uint32_t TableStruct_cache_5fservice_2eproto::offsets[] PROTOBUF_SECTION
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::Reply, _impl_.value_),
+    PROTOBUF_FIELD_OFFSET(::Reply, _impl_.reply_),
 };
 
 static const ::_pbi::MigrationSchema
@@ -96,8 +96,8 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::_Reply_default_instance_._instance,
 };
 const char descriptor_table_protodef_cache_5fservice_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\023cache_service.proto\"\026\n\007Request\022\013\n\003key\030"
-    "\001 \001(\t\"\026\n\005Reply\022\r\n\005value\030\001 \001(\t2\\\n\014CacheSe"
+    "\n\023cache_service.proto\"\026\n\007Request\022\013\n\003req\030"
+    "\001 \001(\t\"\026\n\005Reply\022\r\n\005reply\030\001 \001(\t2\\\n\014CacheSe"
     "rvice\022\027\n\003Get\022\010.Request\032\006.Reply\022\027\n\003Set\022\010."
     "Request\032\006.Reply\022\032\n\006Delete\022\010.Request\032\006.Re"
     "plyb\006proto3"
@@ -153,17 +153,17 @@ Request::Request(const Request& from) : ::google::protobuf::Message() {
   Request* const _this = this;
   (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.key_){},
+      decltype(_impl_.req_){},
       /*decltype(_impl_._cached_size_)*/ {},
   };
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
-  _impl_.key_.InitDefault();
+  _impl_.req_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        _impl_.key_.Set("", GetArenaForAllocation());
+        _impl_.req_.Set("", GetArenaForAllocation());
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_key().empty()) {
-    _this->_impl_.key_.Set(from._internal_key(), _this->GetArenaForAllocation());
+  if (!from._internal_req().empty()) {
+    _this->_impl_.req_.Set(from._internal_req(), _this->GetArenaForAllocation());
   }
 
   // @@protoc_insertion_point(copy_constructor:Request)
@@ -171,12 +171,12 @@ Request::Request(const Request& from) : ::google::protobuf::Message() {
 inline void Request::SharedCtor(::_pb::Arena* arena) {
   (void)arena;
   new (&_impl_) Impl_{
-      decltype(_impl_.key_){},
+      decltype(_impl_.req_){},
       /*decltype(_impl_._cached_size_)*/ {},
   };
-  _impl_.key_.InitDefault();
+  _impl_.req_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        _impl_.key_.Set("", GetArenaForAllocation());
+        _impl_.req_.Set("", GetArenaForAllocation());
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 Request::~Request() {
@@ -186,7 +186,7 @@ Request::~Request() {
 }
 inline void Request::SharedDtor() {
   ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.key_.Destroy();
+  _impl_.req_.Destroy();
 }
 void Request::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
@@ -198,7 +198,7 @@ PROTOBUF_NOINLINE void Request::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.key_.ClearToEmpty();
+  _impl_.req_.ClearToEmpty();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -224,21 +224,21 @@ const ::_pbi::TcParseTable<0, 1, 0, 19, 2> Request::_table_ = {
     &_Request_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string key = 1;
+    // string req = 1;
     {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Request, _impl_.key_)}},
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Request, _impl_.req_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string key = 1;
-    {PROTOBUF_FIELD_OFFSET(Request, _impl_.key_), 0, 0,
+    // string req = 1;
+    {PROTOBUF_FIELD_OFFSET(Request, _impl_.req_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
     "\7\3\0\0\0\0\0\0"
     "Request"
-    "key"
+    "req"
   }},
 };
 
@@ -249,11 +249,11 @@ const ::_pbi::TcParseTable<0, 1, 0, 19, 2> Request::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // string key = 1;
-  if (!this->_internal_key().empty()) {
-    const std::string& _s = this->_internal_key();
+  // string req = 1;
+  if (!this->_internal_req().empty()) {
+    const std::string& _s = this->_internal_req();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Request.key");
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Request.req");
     target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
@@ -274,10 +274,10 @@ const ::_pbi::TcParseTable<0, 1, 0, 19, 2> Request::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string key = 1;
-  if (!this->_internal_key().empty()) {
+  // string req = 1;
+  if (!this->_internal_req().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_key());
+                                    this->_internal_req());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -298,8 +298,8 @@ void Request::MergeImpl(::google::protobuf::Message& to_msg, const ::google::pro
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_key().empty()) {
-    _this->_internal_set_key(from._internal_key());
+  if (!from._internal_req().empty()) {
+    _this->_internal_set_req(from._internal_req());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -320,8 +320,8 @@ void Request::InternalSwap(Request* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.key_, lhs_arena,
-                                       &other->_impl_.key_, rhs_arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.req_, lhs_arena,
+                                       &other->_impl_.req_, rhs_arena);
 }
 
 ::google::protobuf::Metadata Request::GetMetadata() const {
@@ -344,17 +344,17 @@ Reply::Reply(const Reply& from) : ::google::protobuf::Message() {
   Reply* const _this = this;
   (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.value_){},
+      decltype(_impl_.reply_){},
       /*decltype(_impl_._cached_size_)*/ {},
   };
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
-  _impl_.value_.InitDefault();
+  _impl_.reply_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        _impl_.value_.Set("", GetArenaForAllocation());
+        _impl_.reply_.Set("", GetArenaForAllocation());
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_value().empty()) {
-    _this->_impl_.value_.Set(from._internal_value(), _this->GetArenaForAllocation());
+  if (!from._internal_reply().empty()) {
+    _this->_impl_.reply_.Set(from._internal_reply(), _this->GetArenaForAllocation());
   }
 
   // @@protoc_insertion_point(copy_constructor:Reply)
@@ -362,12 +362,12 @@ Reply::Reply(const Reply& from) : ::google::protobuf::Message() {
 inline void Reply::SharedCtor(::_pb::Arena* arena) {
   (void)arena;
   new (&_impl_) Impl_{
-      decltype(_impl_.value_){},
+      decltype(_impl_.reply_){},
       /*decltype(_impl_._cached_size_)*/ {},
   };
-  _impl_.value_.InitDefault();
+  _impl_.reply_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        _impl_.value_.Set("", GetArenaForAllocation());
+        _impl_.reply_.Set("", GetArenaForAllocation());
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 Reply::~Reply() {
@@ -377,7 +377,7 @@ Reply::~Reply() {
 }
 inline void Reply::SharedDtor() {
   ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.value_.Destroy();
+  _impl_.reply_.Destroy();
 }
 void Reply::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
@@ -389,7 +389,7 @@ PROTOBUF_NOINLINE void Reply::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.value_.ClearToEmpty();
+  _impl_.reply_.ClearToEmpty();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -415,21 +415,21 @@ const ::_pbi::TcParseTable<0, 1, 0, 19, 2> Reply::_table_ = {
     &_Reply_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string value = 1;
+    // string reply = 1;
     {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Reply, _impl_.value_)}},
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Reply, _impl_.reply_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string value = 1;
-    {PROTOBUF_FIELD_OFFSET(Reply, _impl_.value_), 0, 0,
+    // string reply = 1;
+    {PROTOBUF_FIELD_OFFSET(Reply, _impl_.reply_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
     "\5\5\0\0\0\0\0\0"
     "Reply"
-    "value"
+    "reply"
   }},
 };
 
@@ -440,11 +440,11 @@ const ::_pbi::TcParseTable<0, 1, 0, 19, 2> Reply::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // string value = 1;
-  if (!this->_internal_value().empty()) {
-    const std::string& _s = this->_internal_value();
+  // string reply = 1;
+  if (!this->_internal_reply().empty()) {
+    const std::string& _s = this->_internal_reply();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Reply.value");
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Reply.reply");
     target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
@@ -465,10 +465,10 @@ const ::_pbi::TcParseTable<0, 1, 0, 19, 2> Reply::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string value = 1;
-  if (!this->_internal_value().empty()) {
+  // string reply = 1;
+  if (!this->_internal_reply().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_value());
+                                    this->_internal_reply());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -489,8 +489,8 @@ void Reply::MergeImpl(::google::protobuf::Message& to_msg, const ::google::proto
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_value().empty()) {
-    _this->_internal_set_value(from._internal_value());
+  if (!from._internal_reply().empty()) {
+    _this->_internal_set_reply(from._internal_reply());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -511,8 +511,8 @@ void Reply::InternalSwap(Reply* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.value_, lhs_arena,
-                                       &other->_impl_.value_, rhs_arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.reply_, lhs_arena,
+                                       &other->_impl_.reply_, rhs_arena);
 }
 
 ::google::protobuf::Metadata Reply::GetMetadata() const {

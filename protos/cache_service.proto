@@ -7,9 +7,9 @@ service CacheService {
 }
 
 message Request {
-  string key = 1;
+  string req = 1;
 }
 
 message Reply {
-  string value = 1;
+  string reply = 1;
 }
