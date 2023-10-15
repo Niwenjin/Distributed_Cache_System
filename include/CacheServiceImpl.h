@@ -3,16 +3,13 @@
 #include "CacheClient.h"
 #include "cache_service.grpc.pb.h"
 #include <grpcpp/grpcpp.h>
+#include <json/json.h>
 #include <memory>
-#include <string>
-#include <unordered_map>
 #include <vector>
 
 using grpc::ServerContext;
 using grpc::Status;
-using std::string;
 using std::unique_ptr;
-using std::unordered_map;
 using std::vector;
 
 class CacheServiceImpl final : public CacheService::Service {
@@ -20,23 +17,24 @@ class CacheServiceImpl final : public CacheService::Service {
     CacheServiceImpl(size_t no);
     ~CacheServiceImpl();
 
-    Status Get(ServerContext *context, const GetRequest *request,
-               GetReply *reply) override;
+    Status Get(ServerContext *context, const Request *request,
+               Reply *reply) override;
 
-    Status Set(ServerContext *context, const SetRequest *request,
-               SetReply *reply) override;
+    Status Set(ServerContext *context, const Request *request,
+               Reply *reply) override;
 
-    Status Delete(ServerContext *context, const DelRequest *request,
-                  DelReply *reply) override;
+    Status Delete(ServerContext *context, const Request *request,
+                  Reply *reply) override;
 
-    string getCache(const string key);
-    void setCache(const string key, const string value);
+    Json::Value getCache(const string key);
+    void setCache(const string key, const Json::Value value);
     int delCache(const string key);
+    void print();
 
   private:
     size_t m_no;
     vector<unique_ptr<CacheClient>> client;
-    unordered_map<string, string> map;
+    Json::Value json_data; // 使用 JSONcpp 存储键值对
     size_t hash(string);
 };
 #endif

@@ -2,6 +2,7 @@
 #define CACHECLIENT_H
 #include "cache_service.grpc.pb.h"
 #include <grpcpp/grpcpp.h>
+#include <json/json.h>
 #include <string>
 
 using grpc::Channel;
@@ -14,9 +15,9 @@ class CacheClient {
     CacheClient(std::shared_ptr<Channel> channel);
     ~CacheClient();
 
-    string Get(const string &key);
+    Json::Value Get(const string &key);
 
-    void Set(const string &key, const string &value);
+    void Set(const string &key, const Json::Value &value);
 
     int Delete(const string &key);
 

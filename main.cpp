@@ -8,7 +8,6 @@
 using grpc::InsecureServerCredentials;
 using grpc::Server;
 using grpc::ServerBuilder;
-using httplib::Request;
 using httplib::Response;
 using std::istringstream;
 using std::stoi;
@@ -17,16 +16,16 @@ using std::unique_ptr;
 
 CacheServiceImpl *service;
 
-void httpget(const Request &req, Response &res);
-void httppost(const Request &req, Response &res);
-void httpdel(const Request &req, Response &res);
+void httpget(const httplib::Request &req, Response &res);
+void httppost(const httplib::Request &req, Response &res);
+void httpdel(const httplib::Request &req, Response &res);
 
 int main(int argc, char *argv[]) {
     size_t no = stoi(argv[1]);
 
     // 启动grpc服务
-    const string server_address[3] = {"0.0.0.0:8080", "0.0.0.0:8081",
-                                      "0.0.0.0:8082"};
+    const string server_address[3] = {"0.0.0.0:8000", "0.0.0.0:8001",
+                                      "0.0.0.0:8002"};
 
     service = new CacheServiceImpl(no);
     ServerBuilder builder;
@@ -36,7 +35,7 @@ int main(int argc, char *argv[]) {
     unique_ptr<Server> server(builder.BuildAndStart());
 
     // 启动HTTP服务
-    const int port[3] = {9527, 9528, 9529};
+    const int port[3] = {8080, 8081, 8082};
     httplib::Server httpsvr;
     httpsvr.Get("/:key", httpget);
     httpsvr.Post("/", httppost);
@@ -50,30 +49,24 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
-void httpget(const Request &req, Response &res) {
-    try {
-        string key = req.path_params.at("key");
-        std::cout << "recive httpget:" << key << std::endl;
-        string value = service->getCache(key);
-        if (value.empty()) {
-            res.status = 404;
-            res.body = "";
-        } else {
-            res.status = 200;
-            Json::Value kv;
-            kv[key] = value;
-            Json::StreamWriterBuilder writer;
-            string json_str = Json::writeString(writer, kv);
-            res.set_content(json_str, "application/json");
-        }
-    } catch (const std::exception &e) {
-        std::cerr << "Error in httpget: " << e.what() << std::endl;
-        res.status = 500;
-        res.set_content("Internal Server Error", "text/plain");
+void httpget(const httplib::Request &req, Response &res) {
+    string key = req.path_params.at("key");
+    std::cout << "recive httpget:" << key << std::endl;
+    Json::Value value = service->getCache(key);
+    if (value.isNull()) {
+        res.status = 404;
+        res.body = "";
+    } else {
+        res.status = 200;
+        Json::Value kv;
+        kv[key] = value;
+        Json::StreamWriterBuilder writer;
+        string json_str = Json::writeString(writer, kv);
+        res.set_content(json_str, "application/json");
     }
 }
 
-void httppost(const Request &req, Response &res) {
+void httppost(const httplib::Request &req, Response &res) {
     std::cout << "recive httppost:" << req.body << std::endl;
     istringstream json_str(req.body);
     Json::CharReaderBuilder reader;
@@ -82,13 +75,14 @@ void httppost(const Request &req, Response &res) {
 
     // 解析JSON数据
     Json::parseFromStream(reader, json_str, &kv, &errs);
+    std::cout << kv << std::endl;
     string key = kv.getMemberNames()[0];
-    string value = kv[key].asString();
+    Json::Value value = kv[key];
 
     service->setCache(key, value);
 }
 
-void httpdel(const Request &req, Response &res) {
+void httpdel(const httplib::Request &req, Response &res) {
     string key = req.path_params.at("key");
     std::cout << "recive httpdel:" << key << std::endl;
     res.status = 200;
