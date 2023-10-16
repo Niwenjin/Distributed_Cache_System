@@ -10,7 +10,13 @@ set(CMAKE_CXX_STANDARD 17)
 # 设置输出compile_commands.json
 set(CMAKE_EXPORT_COMPILE_COMMANDS on)
 
-find_package(gRPC REQUIRED)
+find_package(protobuf REQUIRED)
+set(protobuf_LIBRARIES
+    protobuf::libprotobuf
+    protobuf::libprotoc
+)
+
+find_package(gRPC CONFIG REQUIRED)
 set(grpc_LIBRARIES
     gRPC::grpc++_reflection
 )
@@ -27,8 +33,10 @@ set(absl_LIBRARIES
 
 include_directories(include protos http)
 
+# link_directories(/app/json /app/lib)
+
 add_executable(server main.cpp src/CacheClient.cpp src/CacheServiceImpl.cpp protos/cache_service.pb.cc protos/cache_service.grpc.pb.cc)
 
-target_link_libraries(server ${grpc_LIBRARIES} ${absl_LIBRARIES} jsoncpp protobuf)
+target_link_libraries(server ${grpc_LIBRARIES} ${absl_LIBRARIES} ${protobuf_LIBRARIES} jsoncpp)
 
 # target_link_libraries(server ${grpc_LIBS})

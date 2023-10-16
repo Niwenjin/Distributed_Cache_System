@@ -1,7 +1,6 @@
 #include "CacheServiceImpl.h"
 #include "CacheClient.h"
 #include <cstddef>
-#include <json/value.h>
 #include <memory>
 
 using grpc::CreateChannel;
@@ -9,7 +8,7 @@ using grpc::InsecureChannelCredentials;
 using std::make_unique;
 
 CacheServiceImpl::CacheServiceImpl(size_t no) : m_no(no) {
-    string server_address[3] = {"0.0.0.0:8000", "0.0.0.0:8001", "0.0.0.0:8002"};
+    string server_address[3] = {"server1:8000", "server2:8001", "server3:8002"};
     for (string addr : server_address) {
         client.push_back(make_unique<CacheClient>(
             CreateChannel(addr, InsecureChannelCredentials())));

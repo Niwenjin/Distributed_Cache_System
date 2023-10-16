@@ -1,5 +1,4 @@
 #include "CacheClient.h"
-#include <json/value.h>
 
 CacheClient::CacheClient(std::shared_ptr<Channel> channel)
     : stub(CacheService::NewStub(channel)) {}
