@@ -3,3 +3,5 @@ build
 .cache
 .clang-format
 README.md
+protos/*.cc
+protos/*.h

@@ -11,7 +11,7 @@ services:
       - "8000:8000"
     environment:
       - TZ=Asia/Shanghaiq
-    command: ["./server", "0"]
+    command: ["./build/server", "0"]
 
   server2:
     image: cache-server:latest
@@ -21,7 +21,7 @@ services:
       - "8001:8001"
     environment:
       - TZ=Asia/Shanghai
-    command: ["./server", "1"]
+    command: ["./build/server", "1"]
 
   server3:
     image: cache-server:latest
@@ -31,6 +31,6 @@ services:
       - "8002:8002"
     environment:
       - TZ=Asia/Shanghai
-    command: ["./server", "2"]
+    command: ["./build/server", "2"]
 
 
